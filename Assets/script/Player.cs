@@ -5,13 +5,26 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed = 25f;//need to adjust base on map size
+    public Vector3 velocity;// for gravity
+
     public int hp = 100;
     public bool isDead = false;
     public CharacterController myController;
     public Transform camaraHead;//camera control
+    public float gravityModifier = 100f;
+    
+    public float mouseSensitivity = 100f;
+
+    //variables for jump
+    public float jumpHeight = 10f;
+    public Transform ground;
+    public LayerMask groundLayer;
+    public float groundDistance = 0.5f;
+    public bool allowJump = true;
 
     private float cameraVerticalRotation = 0f;
-    public float mouseSensitivity = 100f;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +36,7 @@ public class Player : MonoBehaviour
     {
         player_movement();
         player_view();
+        Jump();
     }
 
     void player_view()
@@ -31,15 +45,8 @@ public class Player : MonoBehaviour
         float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;//get mouse y input
 
         cameraVerticalRotation -= mouseY;
+        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -90f, 90f);//camera vertical range
         transform.Rotate(Vector3.up * mouseX);// set camara and character rotate with mouse x input
-        if (cameraVerticalRotation >= 90f)
-        {
-            cameraVerticalRotation = 90f;
-        }
-        else if(cameraVerticalRotation <= -80f)
-        {
-            cameraVerticalRotation = -80f;
-        }
 
         camaraHead.localRotation = Quaternion.Euler(cameraVerticalRotation, 0f, 0f);
 
@@ -56,5 +63,26 @@ public class Player : MonoBehaviour
 
 
         myController.Move(move);//set controller
+
+        velocity.y += Physics.gravity.y * Mathf.Pow(Time.deltaTime, 2) * gravityModifier;
+
+        if (myController.isGrounded)
+        {
+            velocity.y = Physics.gravity.y * Time.deltaTime;
+        }
+
+        myController.Move(velocity);
+    }
+
+    void Jump()
+    {
+        allowJump = Physics.OverlapSphere(ground.position, groundDistance, groundLayer).Length > 0;
+
+        if (Input.GetButtonDown("Jump") && allowJump)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * (-2f) * Physics.gravity.y) * Time.deltaTime;
+        }
+
+        myController.Move(velocity);
     }
 }
