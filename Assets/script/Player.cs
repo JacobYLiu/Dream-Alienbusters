@@ -23,7 +23,10 @@ public class Player : MonoBehaviour
     public bool allowJump = true;
 
     private float cameraVerticalRotation = 0f;
-    
+
+    //bullet
+    public GameObject bullet;
+    public Transform firePosition;
 
     // Start is called before the first frame update
     void Start()
@@ -37,9 +40,18 @@ public class Player : MonoBehaviour
         player_movement();
         player_view();
         Jump();
+        Shoot();
     }
 
-    void player_view()
+    private void Shoot()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(bullet, firePosition.position, firePosition.rotation);
+        }
+    }
+
+    private void player_view()
     {
         float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;//get mouse x input
         float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;//get mouse y input
@@ -52,7 +64,7 @@ public class Player : MonoBehaviour
 
     }
 
-    void player_movement()
+    private void player_movement()
     {
         float x = Input.GetAxis("Horizontal");//get x axis
         float z = Input.GetAxis("Vertical");//get z axis
@@ -74,7 +86,7 @@ public class Player : MonoBehaviour
         myController.Move(velocity);
     }
 
-    void Jump()
+    private void Jump()
     {
         allowJump = Physics.OverlapSphere(ground.position, groundDistance, groundLayer).Length > 0;
 
