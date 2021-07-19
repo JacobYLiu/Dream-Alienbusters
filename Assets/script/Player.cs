@@ -23,7 +23,11 @@ public class Player : MonoBehaviour
     public bool allowJump = true;
 
     private float cameraVerticalRotation = 0f;
-    
+
+    //bullet
+    public GameObject bullet;
+    public Transform firePosition;
+    public GameObject muzzleFlash, bulletHold;
 
     // Start is called before the first frame update
     void Start()
@@ -37,9 +41,34 @@ public class Player : MonoBehaviour
         player_movement();
         player_view();
         Jump();
+        Shoot();
     }
 
-    void player_view()
+    private void Shoot()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(camaraHead.position, camaraHead.forward, out hit, 100f))
+            {
+                if(Vector3.Distance(camaraHead.position, hit.point) > 2f){
+                    firePosition.LookAt(hit.point);
+                    if(hit.collider.tag == "Shootable")
+                        Instantiate(bulletHold, hit.point, Quaternion.LookRotation(hit.normal));
+                }
+                
+            }
+            else
+            {
+                firePosition.LookAt(camaraHead.position + camaraHead.forward * 50f);
+            }
+            Instantiate(muzzleFlash, firePosition.position, firePosition.rotation, firePosition);
+            Instantiate(bullet, firePosition.position, firePosition.rotation);
+        }
+    }
+
+    private void player_view()
     {
         float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;//get mouse x input
         float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;//get mouse y input
@@ -52,7 +81,7 @@ public class Player : MonoBehaviour
 
     }
 
-    void player_movement()
+    private void player_movement()
     {
         float x = Input.GetAxis("Horizontal");//get x axis
         float z = Input.GetAxis("Vertical");//get z axis
@@ -74,7 +103,7 @@ public class Player : MonoBehaviour
         myController.Move(velocity);
     }
 
-    void Jump()
+    private void Jump()
     {
         allowJump = Physics.OverlapSphere(ground.position, groundDistance, groundLayer).Length > 0;
 
