@@ -24,11 +24,6 @@ public class Player : MonoBehaviour
 
     private float cameraVerticalRotation = 0f;
 
-    //bullet
-    public GameObject bullet;
-    public Transform firePosition;
-    public GameObject muzzleFlash, bulletHold;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -40,33 +35,15 @@ public class Player : MonoBehaviour
     {
         player_movement();
         player_view();
-        Jump();
-        Shoot();
+        //Shoot();
     }
 
-    private void Shoot()
+    private void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit;
-
-            if (Physics.Raycast(camaraHead.position, camaraHead.forward, out hit, 100f))
-            {
-                if(Vector3.Distance(camaraHead.position, hit.point) > 2f){
-                    firePosition.LookAt(hit.point);
-                    if(hit.collider.tag == "Shootable")
-                        Instantiate(bulletHold, hit.point, Quaternion.LookRotation(hit.normal));
-                }
-                
-            }
-            else
-            {
-                firePosition.LookAt(camaraHead.position + camaraHead.forward * 50f);
-            }
-            Instantiate(muzzleFlash, firePosition.position, firePosition.rotation, firePosition);
-            Instantiate(bullet, firePosition.position, firePosition.rotation);
-        }
+        Jump();
     }
+
+    
 
     private void player_view()
     {
