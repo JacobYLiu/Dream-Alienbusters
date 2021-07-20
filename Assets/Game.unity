@@ -1731,7 +1731,7 @@ MonoBehaviour:
   shootingRate: 0.1
   canAutoFire: 1
   bulletCount: 0
-  totalBullet: 60
+  totalBullet: 90
   MagSize: 30
 --- !u!1 &28215986
 GameObject:

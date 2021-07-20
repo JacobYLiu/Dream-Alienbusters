@@ -90,8 +90,8 @@ public class GunSystem : MonoBehaviour
         }
         else
         {
-            totalBullet = 0;
             bulletCount += totalBullet;
+            totalBullet = 0;
         }
     }
 
