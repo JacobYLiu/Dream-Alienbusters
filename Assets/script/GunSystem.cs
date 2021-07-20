@@ -9,7 +9,11 @@ public class GunSystem : MonoBehaviour
 
     public GameObject bullet;
     public Transform firePosition;
+<<<<<<< HEAD
     public GameObject muzzleFlash, bulletHold;
+=======
+    public GameObject muzzleFlash, bulletHole;
+>>>>>>> main
 
     public float shootingRate;
 
@@ -61,7 +65,11 @@ public class GunSystem : MonoBehaviour
                 {
                     firePosition.LookAt(hit.point);
                     if (hit.collider.tag == "Shootable")
+<<<<<<< HEAD
                         Instantiate(bulletHold, hit.point, Quaternion.LookRotation(hit.normal));
+=======
+                        Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
+>>>>>>> main
                 }
 
             }
