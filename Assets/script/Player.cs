@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
 
     private float cameraVerticalRotation = 0f;
 
+    public float runningSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,7 +66,16 @@ public class Player : MonoBehaviour
         float z = Input.GetAxis("Vertical");//get z axis
 
         Vector3 move = x * transform.right + z * transform.forward;//set move vector
-        move = move * speed * Time.deltaTime;//set movement base on time
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            move = move * runningSpeed * Time.deltaTime;//set movement base on time
+        }
+        else
+        {
+            move = move * speed * Time.deltaTime;//set movement base on time
+        }
+       
 
 
 
