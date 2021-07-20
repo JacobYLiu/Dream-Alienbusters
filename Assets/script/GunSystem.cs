@@ -11,6 +11,7 @@ public class GunSystem : MonoBehaviour
     public Transform firePosition;
     public GameObject muzzleFlash, bulletHole;
 
+
     public float shootingRate;
 
     public bool canAutoFire;
