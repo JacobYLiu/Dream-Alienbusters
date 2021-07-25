@@ -7,8 +7,12 @@ public class GunSystem : MonoBehaviour
 {
     public Transform camaraHead;//camera control
 
+    //ammo text
+    private UI_controller UI_canvas;
+
     public GameObject bullet;
     public Transform firePosition;
+
     public GameObject muzzleFlash, bulletHole;
 
 
@@ -19,11 +23,18 @@ public class GunSystem : MonoBehaviour
 
     public int bulletCount, totalBullet, MagSize;
 
+    //animation
+    public Animator animator_control;
+
+    public float reLoadTime;
+
     // Start is called before the first frame update
     void Start()
     {
         totalBullet -= MagSize;
         bulletCount = MagSize;
+
+        UI_canvas = FindObjectOfType<UI_controller>();
     }
 
     // Update is called once per frame
@@ -32,6 +43,13 @@ public class GunSystem : MonoBehaviour
 
         Shoot();
         GunManage();
+        update_ammo_count();
+    }
+
+    private void update_ammo_count()
+    {
+        UI_canvas.total_bullet.SetText(totalBullet.ToString());
+        UI_canvas.ammoCount.SetText(bulletCount + "/" + MagSize);
     }
 
     private void GunManage()
@@ -74,6 +92,7 @@ public class GunSystem : MonoBehaviour
             Instantiate(muzzleFlash, firePosition.position, firePosition.rotation, firePosition);
             Instantiate(bullet, firePosition.position, firePosition.rotation, firePosition);
 
+            animator_control.SetTrigger("Shoot");
             StartCoroutine(ResetShot());
 
             bulletCount--;
@@ -82,18 +101,20 @@ public class GunSystem : MonoBehaviour
 
     private void Reload()
     {
-        int bulletToAdd = MagSize - bulletCount;
-
-        if(totalBullet > bulletToAdd)
+        if (bulletCount == 0)
         {
-            totalBullet -= bulletToAdd;
-            bulletCount = MagSize;
+            reLoadTime = 3;
+            animator_control.SetTrigger("reload_empty");
         }
         else
         {
-            bulletCount += totalBullet;
-            totalBullet = 0;
+            reLoadTime = 2.03f;
+            animator_control.SetTrigger("reload_not_empty");
         }
+
+
+
+        StartCoroutine(ReloadCoroutine());
     }
 
 
@@ -103,5 +124,25 @@ public class GunSystem : MonoBehaviour
         yield return new WaitForSeconds(shootingRate);
 
         readyToShoot = true;
+    }
+
+    IEnumerator ReloadCoroutine()
+    {
+        yield return new WaitForSeconds(reLoadTime);
+
+        int bulletToAdd = MagSize - bulletCount;
+
+
+
+        if (totalBullet > bulletToAdd)
+        {
+            totalBullet -= bulletToAdd;
+            bulletCount = MagSize;
+        }
+        else
+        {
+            bulletCount += totalBullet;
+            totalBullet = 0;
+        }
     }
 }
