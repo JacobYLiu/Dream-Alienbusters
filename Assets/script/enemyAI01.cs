@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class enemyAI01 : MonoBehaviour
 {
-    public NavMeshAgent agent;
+    NavMeshAgent agent;
 
     public Transform player;
 
@@ -28,13 +28,26 @@ public class enemyAI01 : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    //animator
+    public Animator enemy_veribot_animation_control;
+
+
+    void Start()
+    {
+
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    // Update is called once per frame
+
+/*
     private void Awake()
     {
         player = GameObject.Find("player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
-
-    private void Update()
+*/
+    void Update()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -66,8 +79,8 @@ public class enemyAI01 : MonoBehaviour
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-            walkPointSet = true;
+        //if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        walkPointSet = true;
     }
 
     private void ChasePlayer()
