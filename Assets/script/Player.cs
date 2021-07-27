@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
 
         Vector3 move = x * transform.right + z * transform.forward;//set move vector
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && move.magnitude > 0.2 && z > 0)
         {
             animator_control.SetBool("Run", true);
             running = true;
@@ -94,8 +94,6 @@ public class Player : MonoBehaviour
             move = move * speed * Time.deltaTime;//set movement base on time
         }
        
-
-        //animator_control.SetFloat("speed", move.magnitude);
         if (move.magnitude > 0.2 && !running)
         {
             animator_control.SetBool("Walk", true);
