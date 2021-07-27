@@ -103,11 +103,13 @@ public class GunSystem : MonoBehaviour
     {
         if (bulletCount == 0)
         {
-            reLoadTime = 3;
+            reLoadTime = 3f;
+            readyToShoot = false;
             animator_control.SetTrigger("reload_empty");
         }
         else
         {
+            readyToShoot = false;
             reLoadTime = 2.03f;
             animator_control.SetTrigger("reload_not_empty");
         }
@@ -115,6 +117,7 @@ public class GunSystem : MonoBehaviour
 
 
         StartCoroutine(ReloadCoroutine());
+        
     }
 
 
@@ -144,5 +147,6 @@ public class GunSystem : MonoBehaviour
             bulletCount += totalBullet;
             totalBullet = 0;
         }
+        readyToShoot = true;
     }
 }
