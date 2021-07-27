@@ -7,13 +7,12 @@ public class Player : MonoBehaviour
     public float speed = 25f;//need to adjust base on map size
     public Vector3 velocity;// for gravity
 
-    public int hp = 100;
-    public bool isDead = false;
     public CharacterController myController;
     public Transform camaraHead;//camera control
     public float gravityModifier = 100f;
     
     public float mouseSensitivity = 100f;
+
 
     //variables for jump
     public float jumpHeight = 10f;
@@ -24,13 +23,15 @@ public class Player : MonoBehaviour
 
     private float cameraVerticalRotation = 0f;
 
-    //bullet
-
     public Transform firePosition;
 
 
+    //animation
+    public Animator animator_control;
+
     //running
     public float runningSpeed;
+    private bool running = false;
 
     // Start is called before the first frame update
     void Start()
@@ -44,8 +45,21 @@ public class Player : MonoBehaviour
         player_movement();
         player_view();
         Jump();
-
+        //Shoot();
     }
+
+    public void animation_manager(string gunName)
+    {
+        switch (gunName)
+        {
+            case "arms_assault_rifle_01":
+                break;
+
+            default:
+                break;
+        }
+    }
+
 
     private void player_view()
     {
@@ -67,25 +81,30 @@ public class Player : MonoBehaviour
 
         Vector3 move = x * transform.right + z * transform.forward;//set move vector
 
-
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            animator_control.SetBool("Run", true);
+            running = true;
             move = move * runningSpeed * Time.deltaTime;//set movement base on time
         }
         else
         {
+            animator_control.SetBool("Run", false);
+            running = false;
             move = move * speed * Time.deltaTime;//set movement base on time
         }
        
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        //animator_control.SetFloat("speed", move.magnitude);
+        if (move.magnitude > 0.2 && !running)
         {
-            move = move * runningSpeed * Time.deltaTime;//set movement base on time
+            animator_control.SetBool("Walk", true);
         }
         else
         {
-            move = move * speed * Time.deltaTime;//set movement base on time
+            animator_control.SetBool("Walk", false);
         }
+        //Debug.Log(move.magnitude);
 
         myController.Move(move);//set controller
 
