@@ -21,6 +21,9 @@ public class GrenadeScript : MonoBehaviour {
 	[Tooltip("The intensity of the explosion force")]
 	public float power = 350.0F;
 
+	//grenade damage
+	public int damage = 45;
+
 	[Header("Throw Force")]
 	[Tooltip("Minimum throw force")]
 	public float minimumForce = 1500.0f;
@@ -35,8 +38,8 @@ public class GrenadeScript : MonoBehaviour {
 	{
 		//Generate random throw force
 		//based on min and max values
-		throwForce = Random.Range
-			(minimumForce, maximumForce);
+		//throwForce = Random.Range
+			//(minimumForce, maximumForce);
 
 		//Random rotation of the grenade
 		GetComponent<Rigidbody>().AddRelativeTorque 
@@ -87,13 +90,31 @@ public class GrenadeScript : MonoBehaviour {
 				rb.AddExplosionForce (power * 5, explosionPos, radius, 3.0F);
 			
 			//If the explosion hits "Target" tag and isHit is false
-			if (hit.GetComponent<Collider>().tag == "Target" 
-			    	&& hit.gameObject.GetComponent<TargetScript>().isHit == false) 
+			if (hit.GetComponent<Collider>().CompareTag("Enemy")) 
 			{
-				//Animate the target 
-				hit.gameObject.GetComponent<Animation> ().Play("target_down");
+				
+				enemyHealthSystem enemyHP = hit.GetComponent<enemyHealthSystem>();
+				if(enemyHP != null)
+                {
+					enemyHP.TakingDamange(damage);
+                }
+				//add damage
+
+
 				//Toggle "isHit" on target object
 				hit.gameObject.GetComponent<TargetScript>().isHit = true;
+			}
+			if(hit.GetComponent<Collider>().CompareTag("Player"))
+            {
+				PlayerHealthSystem health = hit.GetComponent<PlayerHealthSystem>();
+				if(health!= null)
+					health.TakingDamange(damage);
+            }
+
+			if(hit.GetComponent<Collider>().CompareTag("Target") && hit.gameObject.GetComponent<TargetScript>().isHit == false)
+            {
+				//Animate the target 
+				hit.gameObject.GetComponent<Animation>().Play("target_down");
 			}
 
 			//If the explosion hits "ExplosiveBarrel" tag
