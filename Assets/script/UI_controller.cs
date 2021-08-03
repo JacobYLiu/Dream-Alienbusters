@@ -9,6 +9,8 @@ public class UI_controller : MonoBehaviour
 
     public TextMeshProUGUI ammoCount;
     public TextMeshProUGUI total_bullet;
+    public TextMeshProUGUI first_aid_count;
+    public TextMeshProUGUI grenadeCount;
 
     public Slider hp_bar;
 
