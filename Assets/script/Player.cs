@@ -33,10 +33,21 @@ public class Player : MonoBehaviour
     public float runningSpeed;
     private bool running = false;
 
+    [Tooltip("The audio clip that is played while walking."), SerializeField]
+    private AudioClip walkingSound;
+
+    [Tooltip("The audio clip that is played while running."), SerializeField]
+    private AudioClip runningSound;
+
+    private AudioSource _audioSource;
+    private Vector3 moving;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.clip = walkingSound;
+        _audioSource.loop = true;
     }
 
     // Update is called once per frame
@@ -44,9 +55,34 @@ public class Player : MonoBehaviour
     {
         player_movement();
         player_view();
-        Jump();
+        //Jump();
+        PlayFootstepSounds();
         //Shoot();
     }
+
+    private void FixedUpdate()
+    {
+        Jump();
+    }
+
+    private void PlayFootstepSounds()
+    {
+        if (allowJump && moving.magnitude > 0.2f)
+        {
+            if (!_audioSource.isPlaying)
+            {
+                _audioSource.Play();
+            }
+        }
+        else
+        {
+            if (_audioSource.isPlaying)
+            {
+                _audioSource.Pause();
+            }
+        }
+    }
+
 
     public void animation_manager(string gunName)
     {
@@ -80,30 +116,34 @@ public class Player : MonoBehaviour
         float z = Input.GetAxis("Vertical");//get z axis
 
         Vector3 move = x * transform.right + z * transform.forward;//set move vector
-
+        moving = move;
         if (Input.GetKey(KeyCode.LeftShift) && move.magnitude > 0.2 && z > 0)
         {
             animator_control.SetBool("Run", true);
             running = true;
+            _audioSource.clip = runningSound;
             move = move * runningSpeed * Time.deltaTime;//set movement base on time
+
         }
         else
         {
             animator_control.SetBool("Run", false);
             running = false;
+            _audioSource.clip = walkingSound;
             move = move * speed * Time.deltaTime;//set movement base on time
         }
        
         if (move.magnitude > 0.2 && !running)
         {
+ 
             animator_control.SetBool("Walk", true);
         }
         else
         {
+            
             animator_control.SetBool("Walk", false);
         }
         //Debug.Log(move.magnitude);
-
         myController.Move(move);//set controller
 
         velocity.y += Physics.gravity.y * Mathf.Pow(Time.deltaTime, 2) * gravityModifier;
@@ -114,6 +154,7 @@ public class Player : MonoBehaviour
         }
 
         myController.Move(velocity);
+
     }
 
     private void Jump()
