@@ -52,7 +52,7 @@ public class GrenadeScript : MonoBehaviour {
 	private void Start () 
 	{
 		//Launch the projectile forward by adding force to it at start
-		GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * throwForce);
+		//GetComponent<Rigidbody>().AddForce(gameObject.transform.forward * throwForce);
 
 		//Start the explosion timer
 		StartCoroutine (ExplosionTimer ());
