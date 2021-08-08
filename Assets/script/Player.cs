@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    
+
     public float speed = 25f;//need to adjust base on map size
     public Vector3 velocity;// for gravity
 
@@ -24,6 +26,10 @@ public class Player : MonoBehaviour
     private float cameraVerticalRotation = 0f;
 
     public Transform firePosition;
+
+    //gold
+    private UI_controller UI_canvas;
+    public int gold_count;
 
 
     //animation
@@ -48,16 +54,19 @@ public class Player : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = walkingSound;
         _audioSource.loop = true;
+        UI_canvas = FindObjectOfType<UI_controller>();
+        gold_count = 0;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        Update_gold();
         player_movement();
         player_view();
         //Jump();
         PlayFootstepSounds();
-        //Shoot();
     }
 
     private void FixedUpdate()
@@ -168,4 +177,25 @@ public class Player : MonoBehaviour
 
         myController.Move(velocity);
     }
+
+    //function for gold
+    private void Update_gold()
+    {
+        UI_canvas.gold.SetText(gold_count.ToString());
+    }
+
+    public void Add_gold(int number)
+    {
+        Debug.Log("add " + number);
+        gold_count += number;
+
+    }
+
+    public void Spend_gold(int number)
+    {
+        gold_count -= number;
+    }
 }
+
+
+
