@@ -11,13 +11,14 @@ public class UI_controller : MonoBehaviour
     public TextMeshProUGUI total_bullet;
     public TextMeshProUGUI first_aid_count;
     public TextMeshProUGUI grenadeCount;
+    public TextMeshProUGUI gold;
 
     public Slider hp_bar;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame

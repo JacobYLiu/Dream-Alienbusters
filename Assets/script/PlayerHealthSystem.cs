@@ -23,9 +23,27 @@ public class PlayerHealthSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        recover();
     }
 
+
+    private void recover()
+    {
+        if(Input.GetKeyDown(KeyCode.T) && first_aid_count > 0)
+        {
+            if(current_health > 0)
+            {
+                current_health += max_health / 2;
+                first_aid_count--;
+                if(current_health > max_health)
+                {
+                    current_health = max_health;
+                }
+                hp_bar.SetHealth(current_health);
+                hp_bar.first_aid_count.SetText(first_aid_count.ToString());
+            }            
+        }
+    }
 
     public void TakingDamange(int damange)
     {
