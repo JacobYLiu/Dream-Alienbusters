@@ -98,11 +98,7 @@ public class GrenadeScript : MonoBehaviour {
                 {
 					enemyHP.TakingDamange(damage);
                 }
-				//add damage
 
-
-				//Toggle "isHit" on target object
-				hit.gameObject.GetComponent<TargetScript>().isHit = true;
 			}
 			if(hit.GetComponent<Collider>().CompareTag("Player"))
             {
