@@ -4,20 +4,46 @@ using UnityEngine;
 
 public class EnemyBasicMove : MonoBehaviour
 {
-    Animator myAnimator;
-    Transform player;
-    // Start is called before the first frame update
+    //start
+    public Transform[] waypoints;
+    public int speed;
+
+    private int waypointIndex;
+    private float dist;
+    //end
     void Start()
     {
-        myAnimator = GetComponent<Animator>();
-        player = FindObjectOfType<Player>().transform;
-        //myAnimator.SetBool("move", true);
+        //Start
+        waypointIndex = 0;
+        transform.LookAt(waypoints[waypointIndex].position);
+        //
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //transform.LookAt(player);
+        dist = Vector3.Distance(transform.position, waypoints[waypointIndex].position);
+        if(dist < 1f)
+        {
+            IncreaseIndex();
+        }
+        Patrol();
     }
-}
+
+    void Patrol()
+    {
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+
+    void IncreaseIndex()
+    {
+        waypointIndex++;
+        if(waypointIndex >= waypoints.Length)
+        {
+            waypointIndex = 0;
+        }
+        transform.LookAt(waypoints[waypointIndex].position);
+
+    }
+ }
