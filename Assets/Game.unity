@@ -3285,6 +3285,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.410405, y: 6.306932, z: 6.5338616}
   m_Center: {x: -0.1102829, y: 2.6534655, z: 0.089021124}
+--- !u!114 &49206005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49205999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee36a9c2d688f9d449a21264ab54580a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_health: 100
+  current_health: 0
+  respawn: 5
+  target_down: 0
 --- !u!1001 &50570587
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34725,6 +34741,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1447219355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447219353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee36a9c2d688f9d449a21264ab54580a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_health: 100
+  current_health: 0
+  respawn: 5
+  target_down: 0
 --- !u!65 &1447219356
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42231,6 +42263,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.410405, y: 6.306932, z: 6.5338616}
   m_Center: {x: -0.1102829, y: 2.6534655, z: 0.089021124}
+--- !u!114 &1805554075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805554069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee36a9c2d688f9d449a21264ab54580a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_health: 100
+  current_health: 0
+  respawn: 5
+  target_down: 0
 --- !u!1001 &1806429872
 PrefabInstance:
   m_ObjectHideFlags: 0
