@@ -2791,7 +2791,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6bde5c2e117abed4f8a9d120fb690fa1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 66.32
+      value: 60.36
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6bde5c2e117abed4f8a9d120fb690fa1,
         type: 3}
@@ -2801,7 +2801,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6bde5c2e117abed4f8a9d120fb690fa1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.91
+      value: -33.229
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6bde5c2e117abed4f8a9d120fb690fa1,
         type: 3}
@@ -3225,11 +3225,11 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
   timeBetweenAttacks: 0.5
-  projectile: {fileID: 0}
+  projectile: {fileID: 1325836922669442, guid: eddd5dbbd5cba0343953e804ef2e05c8, type: 3}
   sightRange: 18
   attackRange: 12
-  playerInSightRange: 0
-  playerInAttackRange: 0
+  playerInSightRange: 1
+  playerInAttackRange: 1
   enemy_veribot_animation_control: {fileID: 0}
 --- !u!195 &49206002
 NavMeshAgent:
@@ -7168,7 +7168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4610232264260518, guid: fc4acf37e3096e6429e0041a3c4d7185, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -25.668
+      value: -34.23
       objectReference: {fileID: 0}
     - target: {fileID: 4610232264260518, guid: fc4acf37e3096e6429e0041a3c4d7185, type: 3}
       propertyPath: m_LocalRotation.x
@@ -12920,12 +12920,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934e47ede96f81f4c88aff179d37ce44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  default_speed: 0
   speed: 20
+  allow_run: 1
   velocity: {x: 0, y: 0, z: 0}
   myController: {fileID: 470873821}
   camaraHead: {fileID: 599200005}
   gravityModifier: 1
-  mouseSensitivity: 800
+  mouseSensitivity: 500
   jumpHeight: 1
   ground: {fileID: 2036896199}
   groundLayer:
