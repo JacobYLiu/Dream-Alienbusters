@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    
 
+    public float default_speed;
     public float speed = 25f;//need to adjust base on map size
+    public bool allow_run = true;
     public Vector3 velocity;// for gravity
 
     public CharacterController myController;
@@ -57,7 +58,11 @@ public class Player : MonoBehaviour
         _audioSource.loop = true;
         UI_canvas = FindObjectOfType<UI_controller>();
         gold_count = 0;
+<<<<<<< HEAD
         
+=======
+        default_speed = speed;
+>>>>>>> main
 
     }
 
@@ -133,7 +138,7 @@ public class Player : MonoBehaviour
         Debug.Log(Input.GetAxis("Vertical"));
         Vector3 move = x * transform.right + z * transform.forward;//set move vector
         moving = move;
-        if (Input.GetKey(KeyCode.LeftShift) && move.magnitude > 0.2 && z > 0)
+        if (Input.GetKey(KeyCode.LeftShift) && move.magnitude > 0.2 && z > 0 && allow_run)
         {
             animator_control.SetBool("Run", true);
             running = true;
@@ -201,6 +206,20 @@ public class Player : MonoBehaviour
     public void Spend_gold(int number)
     {
         gold_count -= number;
+    }
+
+    public void slow_down(float num)
+    {
+        speed = num;
+        allow_run = false;
+        StartCoroutine(SlowDownCountDown(5f));
+    }
+
+    private IEnumerator SlowDownCountDown(float timer)
+    {
+        yield return new WaitForSeconds(timer);
+        allow_run = true;
+        speed = default_speed;
     }
 }
 
