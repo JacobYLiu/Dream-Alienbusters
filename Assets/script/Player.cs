@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
     private AudioSource _audioSource;
     private Vector3 moving;
 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +57,7 @@ public class Player : MonoBehaviour
         _audioSource.loop = true;
         UI_canvas = FindObjectOfType<UI_controller>();
         gold_count = 0;
+        
 
     }
 
@@ -67,6 +69,11 @@ public class Player : MonoBehaviour
         player_view();
         //Jump();
         PlayFootstepSounds();
+    }
+
+    public void Switch_animator(Animator newAnimator)
+    {
+        animator_control = newAnimator;
     }
 
     private void FixedUpdate()
@@ -123,7 +130,7 @@ public class Player : MonoBehaviour
     {
         float x = Input.GetAxis("Horizontal");//get x axis
         float z = Input.GetAxis("Vertical");//get z axis
-
+        Debug.Log(Input.GetAxis("Vertical"));
         Vector3 move = x * transform.right + z * transform.forward;//set move vector
         moving = move;
         if (Input.GetKey(KeyCode.LeftShift) && move.magnitude > 0.2 && z > 0)

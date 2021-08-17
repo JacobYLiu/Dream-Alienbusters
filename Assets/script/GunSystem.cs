@@ -23,13 +23,14 @@ public class GunSystem : MonoBehaviour
     private bool shooting, readyToShoot = true;
 
     public int bulletCount, totalBullet, MagSize;
-    public int assult_rife_damage = 40;
+    public int damage = 40;
 
     //animation
     public Animator animator_control;
 
-    public float reLoadTime;
-
+    public float reLoadEmptyTime;
+    public float reloatNotEmptyTime;
+    private float reLoadTime;
     public int max_ammo;
 
 
@@ -98,7 +99,7 @@ public class GunSystem : MonoBehaviour
                 }
                 if (hit.collider.CompareTag("Enemy"))
                 {
-                    hit.collider.GetComponent<enemyHealthSystem>().TakingDamange(assult_rife_damage);
+                    hit.collider.GetComponent<enemyHealthSystem>().TakingDamange(damage);
                 }
                 if (hit.collider.CompareTag("Target") && hit.collider.GetComponent<TargetScript>().isHit == false)
                 {
@@ -137,20 +138,20 @@ public class GunSystem : MonoBehaviour
         if (bulletCount == 0 && totalBullet > 0)
         {
 
-            reLoadTime = 3f;
+            reLoadTime = reLoadEmptyTime;//3f;
             readyToShoot = false;
             animator_control.SetTrigger("reload_empty");
         }
         else if (bulletCount > 0 && totalBullet > 0)
         {
             readyToShoot = false;
-            reLoadTime = 2.03f;
+            reLoadTime = reloatNotEmptyTime;//2.03f;
             animator_control.SetTrigger("reload_not_empty");
         }
 
 
 
-        StartCoroutine(ReloadCoroutine());
+        StartCoroutine(ReloadCoroutine(reLoadTime));
         
     }
 
@@ -169,9 +170,9 @@ public class GunSystem : MonoBehaviour
         readyToShoot = true;
     }
 
-    IEnumerator ReloadCoroutine()
+    IEnumerator ReloadCoroutine(float timer)
     {
-        yield return new WaitForSeconds(reLoadTime);
+        yield return new WaitForSeconds(timer);
 
         int bulletToAdd = MagSize - bulletCount;
 
