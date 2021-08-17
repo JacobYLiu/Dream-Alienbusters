@@ -58,11 +58,8 @@ public class Player : MonoBehaviour
         _audioSource.loop = true;
         UI_canvas = FindObjectOfType<UI_controller>();
         gold_count = 0;
-<<<<<<< HEAD
-        
-=======
         default_speed = speed;
->>>>>>> main
+
 
     }
 
