@@ -7,7 +7,7 @@ public class Trap : MonoBehaviour
     // Start is called before the first frame update
 
     public int trapDamage;
-    public int trapSlowdown;
+    
     private bool triggered;
     void Start()
     {

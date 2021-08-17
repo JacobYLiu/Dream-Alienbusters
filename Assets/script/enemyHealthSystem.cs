@@ -10,17 +10,23 @@ public class enemyHealthSystem : MonoBehaviour
     public float respawn = 5f;
     public bool target_down;
     private Player money;
+
+    Enemy_UI_control hp_bar;
+
     // Start is called before the first frame update
     void Start()
     {
         current_health = max_health;
+        hp_bar = GetComponentInChildren<Enemy_UI_control>();
         money = FindObjectOfType<Player>();
         target_down = false;
+        hp_bar.SetMaxHealth(current_health);
     }
 
     // Update is called once per frame
     void Update()
     {
+        hp_bar.SetHealth(current_health);
         drop_gold();
     }
 
@@ -37,7 +43,7 @@ public class enemyHealthSystem : MonoBehaviour
     public void TakingDamange(int damange)
     {
         current_health -= damange;
-
+        
 
         if (current_health <= 0)
         {
