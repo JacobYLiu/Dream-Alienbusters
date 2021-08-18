@@ -5,15 +5,18 @@ using UnityEngine;
 
 public class WeaponSwitchSystem : MonoBehaviour
 {
+    UI_controller canvas;
     Player player1;
     private GunSystem active_gun;
     public List<GunSystem> guns = new List<GunSystem>();
     public int gun_index;
     public List<Animator> animatorList;
+    
     // Start is called before the first frame update
     void Start()
     {
-        foreach(GunSystem gun in guns)
+        canvas = FindObjectOfType<UI_controller>();
+        foreach (GunSystem gun in guns)
         {
             gun.gameObject.SetActive(false);
         }
