@@ -1772,8 +1772,8 @@ MonoBehaviour:
   MagSize: 30
   damage: 40
   animator_control: {fileID: 20969826}
-  reLoadEmptyTime: 3
-  reloatNotEmptyTime: 2.03
+  reLoadEmptyTime: 0
+  reloatNotEmptyTime: 0
   max_ammo: 200
   ammo_pick_up_cool_down: 300
 --- !u!1 &28215986
@@ -6214,7 +6214,7 @@ RectTransform:
   m_Children:
   - {fileID: 1533057508}
   - {fileID: 131150380}
-  - {fileID: 1582154458}
+  - {fileID: 1048109999}
   - {fileID: 1222125892}
   - {fileID: 753528907}
   - {fileID: 1089681778}
@@ -13070,7 +13070,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934e47ede96f81f4c88aff179d37ce44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  default_speed: 0
   speed: 20
+  allow_run: 1
   velocity: {x: 0, y: 0, z: 0}
   myController: {fileID: 470873821}
   camaraHead: {fileID: 599200005}
@@ -25462,6 +25464,43 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300014, guid: c33a4886f833dc246ab140047c703e76, type: 3}
+--- !u!1 &1048109998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1048109999}
+  m_Layer: 0
+  m_Name: gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1048109999
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048109998}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1582154458}
+  - {fileID: 1530597665}
+  m_Father: {fileID: 190295168}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 756, y: -432}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1049250196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36569,6 +36608,81 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300014, guid: c33a4886f833dc246ab140047c703e76, type: 3}
+--- !u!1 &1530597664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1530597665}
+  - component: {fileID: 1530597667}
+  - component: {fileID: 1530597666}
+  m_Layer: 0
+  m_Name: handgun image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1530597665
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530597664}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1048109999}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 256, y: 256}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1530597666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530597664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: d6e4dc2ab496ac845a119b14c5abbb91, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1530597667
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530597664}
+  m_CullTransparentMesh: 1
 --- !u!1 &1533057507
 GameObject:
   m_ObjectHideFlags: 0
@@ -38110,16 +38224,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582154457}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 190295168}
-  m_RootOrder: 2
+  m_Father: {fileID: 1048109999}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1728.816, y: 128.50574}
+  m_AnchoredPosition: {x: 37.18396, y: 70.50574}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.44993734, y: 0.58010054}
 --- !u!114 &1582154459
@@ -42896,6 +43010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 033116bb956d66547820aef5653ce1ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trapSlowdown: 0
 --- !u!1 &1813113980 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1907678173372122, guid: 7a0c0987d19df5b47a6baf7170d6dfe4,
@@ -50054,6 +50169,9 @@ MonoBehaviour:
   - {fileID: 3967952174764919976}
   - {fileID: 28215983}
   gun_index: 0
+  animatorList:
+  - {fileID: 3967952174755577707}
+  - {fileID: 20969826}
 --- !u!1001 &2120412601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51406,10 +51524,10 @@ MonoBehaviour:
   bulletCount: 15
   totalBullet: 30
   MagSize: 15
-  damage: 40
+  damage: 10
   animator_control: {fileID: 3967952174755577707}
-  reLoadEmptyTime: 2.07
-  reloatNotEmptyTime: 1.21
+  reLoadEmptyTime: 0
+  reloatNotEmptyTime: 0
   max_ammo: 100
   ammo_pick_up_cool_down: 300
 --- !u!1 &3967952174764919977
