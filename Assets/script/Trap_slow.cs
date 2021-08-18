@@ -5,7 +5,7 @@ using UnityEngine;
 public class Trap_slow : MonoBehaviour
 {
 
-    public int trapSlowdown;
+    public float trapSlowdown;
     private bool triggered;
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class Trap_slow : MonoBehaviour
     {
         if (other.CompareTag("Player") && !triggered)
         {
-            other.GetComponent<Player>().slow_down(10f);
+            other.GetComponent<Player>().slow_down(trapSlowdown);
             triggered = true;
             StartCoroutine(timmer());
         }

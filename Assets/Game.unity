@@ -3227,7 +3227,8 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
   timeBetweenAttacks: 0.5
-  projectile: {fileID: 0}
+  projectile: {fileID: 4023958417950834780, guid: 9249c9f33c656ca4aa1ba4671f9c794d,
+    type: 3}
   sightRange: 18
   attackRange: 12
   playerInSightRange: 0
@@ -13070,12 +13071,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934e47ede96f81f4c88aff179d37ce44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  default_speed: 0
+  speed: 15
+  allow_run: 1
   velocity: {x: 0, y: 0, z: 0}
   myController: {fileID: 470873821}
   camaraHead: {fileID: 599200005}
   gravityModifier: 1
-  mouseSensitivity: 800
+  mouseSensitivity: 400
   jumpHeight: 1
   ground: {fileID: 2036896199}
   groundLayer:
@@ -35191,7 +35194,8 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
   timeBetweenAttacks: 0.5
-  projectile: {fileID: 0}
+  projectile: {fileID: 4023958417950834780, guid: 9249c9f33c656ca4aa1ba4671f9c794d,
+    type: 3}
   sightRange: 18
   attackRange: 12
   playerInSightRange: 0
@@ -42708,7 +42712,8 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
   timeBetweenAttacks: 0.5
-  projectile: {fileID: 0}
+  projectile: {fileID: 4023958417950834780, guid: 9249c9f33c656ca4aa1ba4671f9c794d,
+    type: 3}
   sightRange: 18
   attackRange: 12
   playerInSightRange: 0
@@ -42896,6 +42901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 033116bb956d66547820aef5653ce1ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trapSlowdown: 5
 --- !u!1 &1813113980 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1907678173372122, guid: 7a0c0987d19df5b47a6baf7170d6dfe4,
@@ -50054,6 +50060,9 @@ MonoBehaviour:
   - {fileID: 3967952174764919976}
   - {fileID: 28215983}
   gun_index: 0
+  animatorList:
+  - {fileID: 3967952174755577707}
+  - {fileID: 20969826}
 --- !u!1001 &2120412601
 PrefabInstance:
   m_ObjectHideFlags: 0
