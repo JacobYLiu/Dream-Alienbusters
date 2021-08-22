@@ -218,6 +218,12 @@ public class Player : MonoBehaviour
         allow_run = true;
         speed = default_speed;
     }
+    private void Option()
+    {
+        if (Input.GetKey(KeyCode.Escape)){
+
+        }
+    }
 }
 
 
