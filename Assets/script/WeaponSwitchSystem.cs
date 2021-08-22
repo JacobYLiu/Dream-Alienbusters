@@ -20,8 +20,13 @@ public class WeaponSwitchSystem : MonoBehaviour
         {
             gun.gameObject.SetActive(false);
         }
+        for (int i =0; i < canvas.gunImage.Count; i++)
+        {
+            canvas.gunImage[i].gameObject.SetActive(false);
+        }
         player1 = GetComponentInParent<Player>();
         active_gun = guns[gun_index];
+        canvas.gunImage[gun_index].gameObject.SetActive(true);
         active_gun.gameObject.SetActive(true);
         player1.Switch_animator(animatorList[gun_index]);
     }
@@ -38,11 +43,13 @@ public class WeaponSwitchSystem : MonoBehaviour
     private void switch_gun()
     {
         active_gun.gameObject.SetActive(false);
+        canvas.gunImage[gun_index].gameObject.SetActive(false);
         gun_index++;
         if(gun_index >= guns.Count)
         {
             gun_index = 0;
         }
+        canvas.gunImage[gun_index].gameObject.SetActive(true);
         player1.Switch_animator(animatorList[gun_index]);
         active_gun = guns[gun_index];
         active_gun.gameObject.SetActive(true);

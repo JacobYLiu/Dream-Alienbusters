@@ -14,6 +14,7 @@ public class UI_controller : MonoBehaviour
     public TextMeshProUGUI gold;
 
     public Slider hp_bar;
+    public List<Image> gunImage;
 
     // Start is called before the first frame update
     void Start()
