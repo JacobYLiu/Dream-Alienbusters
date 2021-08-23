@@ -40,9 +40,9 @@ public class enemyHealthSystem : MonoBehaviour
            
     }
 
-    public void TakingDamange(int damange)
+    public void TakingDamange(int damage)
     {
-        current_health -= damange;
+        current_health -= damage;
         
 
         if (current_health <= 0)

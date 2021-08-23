@@ -46,9 +46,9 @@ public class PlayerHealthSystem : MonoBehaviour
         }
     }
 
-    public void TakingDamange(int damange)
+    public void TakingDamange(int damage)
     {
-        current_health -= damange;
+        current_health -= damage;
 
         hp_bar.SetHealth(current_health);
 
