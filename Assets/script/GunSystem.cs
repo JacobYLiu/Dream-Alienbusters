@@ -123,6 +123,10 @@ public class GunSystem : MonoBehaviour
                 {
                     hit.collider.GetComponent<enemyHealthSystem>().TakingDamange(damage);
                 }
+                if(hit.collider.CompareTag("Boss") && !Luancher)
+                {
+
+                }
                 if (hit.collider.CompareTag("Target") && hit.collider.GetComponent<TargetScript>().isHit == false && !Luancher)
                 {
                     hit.collider.GetComponent<TargetScript> ().isHit = true;
