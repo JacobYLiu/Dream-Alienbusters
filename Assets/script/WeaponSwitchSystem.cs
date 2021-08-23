@@ -11,6 +11,7 @@ public class WeaponSwitchSystem : MonoBehaviour
     public List<GunSystem> guns = new List<GunSystem>();
     public int gun_index;
     public List<Animator> animatorList;
+    public List<ammoPickUp> ammoPickUps;
     
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,10 @@ public class WeaponSwitchSystem : MonoBehaviour
         canvas.gunImage[gun_index].gameObject.SetActive(true);
         active_gun.gameObject.SetActive(true);
         player1.Switch_animator(animatorList[gun_index]);
+        foreach(ammoPickUp ammoBox in ammoPickUps)
+        {
+            ammoBox.gunsys = active_gun;
+        }
     }
 
     // Update is called once per frame
@@ -53,5 +58,9 @@ public class WeaponSwitchSystem : MonoBehaviour
         player1.Switch_animator(animatorList[gun_index]);
         active_gun = guns[gun_index];
         active_gun.gameObject.SetActive(true);
+        foreach (ammoPickUp ammoBox in ammoPickUps)
+        {
+            ammoBox.gunsys = active_gun;
+        }
     }
 }
