@@ -20,7 +20,11 @@ public class Explosion : MonoBehaviour
         }
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerHealthSystem>().TakingDamange(explosionDamage);
+            other.GetComponent<PlayerHealthSystem>().TakingDamange(explosionDamage/2);
+        }
+        if (other.CompareTag("Boss"))
+        {
+
         }
     }
 
