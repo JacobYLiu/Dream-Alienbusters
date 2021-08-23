@@ -14,10 +14,9 @@ public class ammoPickUp : MonoBehaviour
 
     private void Update()
     {
-       
         Vector3 distanceToPlayer = player.position - transform.position;
         if (distanceToPlayer.magnitude <= pickupRange && Input.GetKeyDown(KeyCode.F))
-        { 
+        {
             gunsys.addAmmo();
         }
     }
