@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -58,5 +59,10 @@ public class PlayerHealthSystem : MonoBehaviour
             gameObject.SetActive(false);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+    }
+
+    internal void TakingDamange(float melee_Damage)
+    {
+        throw new NotImplementedException();
     }
 }
