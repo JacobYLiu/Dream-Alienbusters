@@ -12,6 +12,7 @@ public class enemyAI01 : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer;
     public Transform player;
+    public Transform firePosition;
 
     public float health;
 
@@ -53,9 +54,8 @@ public class enemyAI01 : MonoBehaviour
 
     void Update()
     {
-        RaycastHit hit;
         playerInChaseRange = Physics.CheckSphere(transform.position, chaseRange, whatIsPlayer);
-        playerInAttackRange = Physics.Raycast(transform.position, transform.forward, out hit, attackRange, whatIsPlayer);
+        playerInAttackRange = Physics.Raycast(transform.position, transform.forward, attackRange, whatIsPlayer);
 
         if (!playerInChaseRange && !playerInAttackRange) Guarding();
         if (playerInChaseRange && !playerInAttackRange) ChasePlayer();
@@ -128,9 +128,11 @@ public class enemyAI01 : MonoBehaviour
 
         if (readyToAttack && !meleeAttacker)
         {
-            Instantiate(projectile, transform.position, transform.localRotation );
+           
+            Instantiate(projectile, transform.position, Quaternion.identity);
             readyToAttack = false;
             StartCoroutine(ResetAttack());
+
         }
         if(readyToAttack && meleeAttacker && isBoss)
         {
