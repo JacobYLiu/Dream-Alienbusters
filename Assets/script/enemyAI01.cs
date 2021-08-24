@@ -53,8 +53,9 @@ public class enemyAI01 : MonoBehaviour
 
     void Update()
     {
+        RaycastHit hit;
         playerInChaseRange = Physics.CheckSphere(transform.position, chaseRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        playerInAttackRange = Physics.Raycast(transform.position, transform.forward, out hit, attackRange, whatIsPlayer);
 
         if (!playerInChaseRange && !playerInAttackRange) Guarding();
         if (playerInChaseRange && !playerInAttackRange) ChasePlayer();

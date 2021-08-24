@@ -35,5 +35,6 @@ public class EnemyProjectileController : MonoBehaviour
         {
             other.gameObject.GetComponent<PlayerHealthSystem>().TakingDamange(damageAmount);
         }
+        Destroy(myRigidBody);
     }
 }
