@@ -129,6 +129,10 @@ public class GunSystem : MonoBehaviour
                     hit.collider.GetComponent<TargetScript> ().isHit = true;
                     hit.collider.GetComponent<Animation>().Play("target_down");
                 }
+                if(hit.collider.CompareTag("Boss") && !Luancher)
+                {
+                    hit.collider.GetComponent<BossHealth>().TakingDamange(damage);
+                }
             }
             else
             {

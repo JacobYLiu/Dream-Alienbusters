@@ -104,4 +104,24 @@ public class WeaponSwitchSystem : MonoBehaviour
             ammobox.gunsys = active_gun;
         }
     }
+
+    //for shop using
+    public void switch_gun_shop(int index)
+    {
+        active_gun.gameObject.SetActive(false);
+        canvas.gunImage[gun_index].gameObject.SetActive(false);
+        gun_index = index;
+        if (gun_index >= guns.Count)
+        {
+            gun_index = 0;
+        }
+        canvas.gunImage[gun_index].gameObject.SetActive(true);
+        player1.Switch_animator(animatorList[gun_index]);
+        active_gun = guns[gun_index];
+        active_gun.gameObject.SetActive(true);
+        foreach (ammoPickUp ammobox in ammoPickUps)
+        {
+            ammobox.gunsys = active_gun;
+        }
+    }
 }
