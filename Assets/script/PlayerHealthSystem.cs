@@ -61,8 +61,4 @@ public class PlayerHealthSystem : MonoBehaviour
         }
     }
 
-    internal void TakingDamange(float melee_Damage)
-    {
-        throw new NotImplementedException();
-    }
 }

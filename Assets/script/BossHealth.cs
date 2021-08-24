@@ -10,7 +10,7 @@ public class BossHealth : MonoBehaviour
     public int current_health;
     public bool target_down;
 
-    Animator boss_animation;
+    public Animator boss_animation;
     int take_damage_animation_index = 0;
     Enemy_UI_control hp_bar;
 
@@ -36,7 +36,8 @@ public class BossHealth : MonoBehaviour
 
         if (current_health <= 0)
         {
-            boss_animation.SetTrigger("Die");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+
         }
         else
         {
@@ -46,10 +47,10 @@ public class BossHealth : MonoBehaviour
                     boss_animation.SetTrigger("Take_Damage_1");
                     break;
                 case 1:
-                    boss_animation.SetTrigger("Take_Damage_1");
+                    boss_animation.SetTrigger("Take_Damage_2");
                     break;
                 case 2:
-                    boss_animation.SetTrigger("Take_Damage_1");
+                    boss_animation.SetTrigger("Take_Damage_3");
                     break;
                 default:
                     take_damage_animation_index = 0;
@@ -64,10 +65,5 @@ public class BossHealth : MonoBehaviour
 
     }
 
-    IEnumerator game_complete()
-    {
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
-    }
 
 }
