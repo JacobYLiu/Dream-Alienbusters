@@ -56,11 +56,12 @@ public class GunSystem : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    public bool isdong;
     // Update is called once per frame
     void Update()
     {
         if (PauseMenu.GameIsPaused) { return; }
-
+        if(!isdong)
         Shoot();
         GunManage();
         update_ammo_count();

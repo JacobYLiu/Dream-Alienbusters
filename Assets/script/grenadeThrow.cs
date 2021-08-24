@@ -17,7 +17,7 @@ public class grenadeThrow : MonoBehaviour
     {
         UI_canvas = FindObjectOfType<UI_controller>();
         //for testing
-        grenade_count = max_grenade;
+      //  grenade_count = max_grenade;
     }
     void Update()
     {
@@ -36,6 +36,28 @@ public class grenadeThrow : MonoBehaviour
         if(grenade_count > max_grenade)
         {
             grenade_count = max_grenade;
+        }
+    }
+
+    public Player player;
+    public GameObject goumai;
+    public void buyGrenable(int number)
+    {
+
+        if (grenade_count >= max_grenade)
+        {
+
+        }
+        else
+        {
+            if (player.gold_count >= number)
+            {
+                grenade_count += 1;
+            UI_canvas.grenadeCount.SetText(grenade_count.ToString());
+            player.gold_count -= number;
+                UI_canvas.gold.SetText(player.gold_count.ToString());
+                goumai.SetActive(true);
+            }
         }
     }
 

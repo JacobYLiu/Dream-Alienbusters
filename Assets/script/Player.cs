@@ -67,10 +67,13 @@ public class Player : MonoBehaviour
     void Update()
     {
         Update_gold();
-        player_movement();
-        player_view();
-        //Jump();
-        PlayFootstepSounds();
+        if (!isjingtai)
+        {
+            player_movement();
+            player_view();
+            //Jump();
+            PlayFootstepSounds();
+        }
     }
 
     public void Switch_animator(Animator newAnimator)
@@ -117,15 +120,16 @@ public class Player : MonoBehaviour
 
     private void player_view()
     {
-        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;//get mouse x input
-        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;//get mouse y input
+       
+            float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;//get mouse x input
+            float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;//get mouse y input
 
-        cameraVerticalRotation -= mouseY;
-        cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -90f, 90f);//camera vertical range
-        transform.Rotate(Vector3.up * mouseX);// set camara and character rotate with mouse x input
+            cameraVerticalRotation -= mouseY;
+            cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -90f, 90f);//camera vertical range
+            transform.Rotate(Vector3.up * mouseX);// set camara and character rotate with mouse x input
 
-        camaraHead.localRotation = Quaternion.Euler(cameraVerticalRotation, 0f, 0f);
-
+            camaraHead.localRotation = Quaternion.Euler(cameraVerticalRotation, 0f, 0f);
+       
     }
 
     private void player_movement()
@@ -224,6 +228,109 @@ public class Player : MonoBehaviour
 
         }
     }
+
+    public GameObject xs;
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.tag == "Shootable")
+        {
+            xs.SetActive(true);
+        }
+        if (col.gameObject.tag == "shop")
+        {
+
+            xs.SetActive(true);
+
+        }
+        if (col.gameObject.tag == "shop1")
+        {
+
+            xs.SetActive(true);
+        }
+    }
+    bool menkaiqi;
+
+    public bool isjingtai;
+    public GunSystem HandgunScriptLPFP;
+    void OnTriggerStay(Collider col)
+    {
+        if (col.gameObject.tag == "Shootable")
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                col.GetComponent<kaimen>().kai();
+                xs.SetActive(false);
+                menkaiqi = true;
+            }
+        }
+        if (col.gameObject.tag == "shop")
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Cursor.visible = true;
+                Cursor.lockState = true ? CursorLockMode.Confined : CursorLockMode.Locked;
+                shop1.SetActive(true);
+                xs.SetActive(false);
+                isjingtai = true;
+                HandgunScriptLPFP.isdong=true;
+            }
+        }
+        if (col.gameObject.tag == "shop1")
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Cursor.visible = true;
+                Cursor.lockState = true ? CursorLockMode.Confined : CursorLockMode.Locked;
+                shop2.SetActive(true);
+                xs.SetActive(false);
+                isjingtai = true;
+                HandgunScriptLPFP.isdong = true;
+            }
+        }
+    }
+
+
+    public void xingdong()
+    {
+        isjingtai = false;
+        HandgunScriptLPFP.isdong = false;
+    }
+
+
+    public jiaobenjianyong jiaobenjianyong;
+
+    public GameObject shop1, shop2;
+
+    void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.tag == "men")
+        {
+            if (menkaiqi)
+            {
+                col.GetComponent<Animator>().Play("guanmen");
+              
+                menkaiqi = false;
+            }
+            xs.SetActive(false);
+        }
+        if (col.gameObject.tag == "shop")
+        {
+            Cursor.visible = false;
+            Cursor.lockState = false ? CursorLockMode.Confined : CursorLockMode.Locked;
+            shop1.SetActive(false);
+            xs.SetActive(false);
+        }
+        if (col.gameObject.tag == "shop1")
+        {
+            Cursor.visible = false;
+            Cursor.lockState = false ? CursorLockMode.Confined : CursorLockMode.Locked;
+            shop2.SetActive(false);
+            xs.SetActive(false);
+        }
+    }
+
+   
+
 }
 
 

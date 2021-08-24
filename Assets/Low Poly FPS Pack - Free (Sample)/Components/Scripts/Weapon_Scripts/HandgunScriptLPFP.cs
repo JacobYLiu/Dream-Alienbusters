@@ -199,7 +199,8 @@ public class HandgunScriptLPFP : MonoBehaviour {
 				initialSwayPosition, Time.deltaTime * swaySmoothValue);
 		}
 	}
-	
+
+	public bool isting;
 	private void Update () {
 
 		//Aiming
@@ -328,74 +329,78 @@ public class HandgunScriptLPFP : MonoBehaviour {
 		//Shooting 
 		if (Input.GetMouseButtonDown (0) && !outOfAmmo && !isReloading && !isInspecting && !isRunning) 
 		{
-			anim.Play ("Fire", 0, 0f);
-	
-			muzzleParticles.Emit (1);
-				
-			//Remove 1 bullet from ammo
-			currentAmmo -= 1;
-
-			shootAudioSource.clip = SoundClips.shootSound;
-			shootAudioSource.Play ();
-
-			//Light flash start
-			StartCoroutine(MuzzleFlashLight());
-
-			if (!isAiming) //if not aiming
+			if (!isting)
 			{
-				anim.Play ("Fire", 0, 0f);
-		
-				muzzleParticles.Emit (1);
+				anim.Play("Fire", 0, 0f);
 
-				if (enableSparks == true) 
+				muzzleParticles.Emit(1);
+
+				//Remove 1 bullet from ammo
+				currentAmmo -= 1;
+
+				shootAudioSource.clip = SoundClips.shootSound;
+				shootAudioSource.Play();
+
+				//Light flash start
+				StartCoroutine(MuzzleFlashLight());
+
+				if (!isAiming) //if not aiming
 				{
-					//Emit random amount of spark particles
-					sparkParticles.Emit (Random.Range (1, 6));
-				}
-			} 
-			else //if aiming
-			{
-				anim.Play ("Aim Fire", 0, 0f);
-					
-				//If random muzzle is false
-				if (!randomMuzzleflash) {
-					muzzleParticles.Emit (1);
-					//If random muzzle is true
-				} 
-				else if (randomMuzzleflash == true) 
-				{
-					//Only emit if random value is 1
-					if (randomMuzzleflashValue == 1) 
+					anim.Play("Fire", 0, 0f);
+
+					muzzleParticles.Emit(1);
+
+					if (enableSparks == true)
 					{
-						if (enableSparks == true) 
+						//Emit random amount of spark particles
+						sparkParticles.Emit(Random.Range(1, 6));
+					}
+				}
+				else //if aiming
+				{
+					anim.Play("Aim Fire", 0, 0f);
+
+					//If random muzzle is false
+					if (!randomMuzzleflash)
+					{
+						muzzleParticles.Emit(1);
+						//If random muzzle is true
+					}
+					else if (randomMuzzleflash == true)
+					{
+						//Only emit if random value is 1
+						if (randomMuzzleflashValue == 1)
 						{
-							//Emit random amount of spark particles
-							sparkParticles.Emit (Random.Range (1, 6));
-						}
-						if (enableMuzzleflash == true) 
-						{
-							muzzleParticles.Emit (1);
-							//Light flash start
-							StartCoroutine (MuzzleFlashLight ());
+							if (enableSparks == true)
+							{
+								//Emit random amount of spark particles
+								sparkParticles.Emit(Random.Range(1, 6));
+							}
+							if (enableMuzzleflash == true)
+							{
+								muzzleParticles.Emit(1);
+								//Light flash start
+								StartCoroutine(MuzzleFlashLight());
+							}
 						}
 					}
 				}
+
+				//Spawn bullet at bullet spawnpoint
+				var bullet = (Transform)Instantiate(
+					Prefabs.bulletPrefab,
+					Spawnpoints.bulletSpawnPoint.transform.position,
+					Spawnpoints.bulletSpawnPoint.transform.rotation);
+
+				//Add velocity to the bullet
+				bullet.GetComponent<Rigidbody>().velocity =
+				bullet.transform.forward * bulletForce;
+
+				//Spawn casing prefab at spawnpoint
+				Instantiate(Prefabs.casingPrefab,
+					Spawnpoints.casingSpawnPoint.transform.position,
+					Spawnpoints.casingSpawnPoint.transform.rotation);
 			}
-				
-			//Spawn bullet at bullet spawnpoint
-			var bullet = (Transform)Instantiate (
-				Prefabs.bulletPrefab,
-				Spawnpoints.bulletSpawnPoint.transform.position,
-				Spawnpoints.bulletSpawnPoint.transform.rotation);
-
-			//Add velocity to the bullet
-			bullet.GetComponent<Rigidbody>().velocity = 
-			bullet.transform.forward * bulletForce;
-
-			//Spawn casing prefab at spawnpoint
-			Instantiate (Prefabs.casingPrefab, 
-				Spawnpoints.casingSpawnPoint.transform.position, 
-				Spawnpoints.casingSpawnPoint.transform.rotation);
 		}
 
 		//Inspect weapon when pressing T key

@@ -12,6 +12,7 @@ public class PlayerHealthSystem : MonoBehaviour
     public int Max_first_aid;
 
     UI_controller hp_bar;
+    public GameObject jieshu;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +44,29 @@ public class PlayerHealthSystem : MonoBehaviour
                 hp_bar.SetHealth(current_health);
                 hp_bar.first_aid_count.SetText(first_aid_count.ToString());
             }            
+        }
+    }
+
+    public Player player;
+    public GameObject goumai;
+    public void addxuebao(int number)
+    {
+
+        if (first_aid_count >= Max_first_aid)
+        {
+
+        }
+        else
+        {
+            if (player.gold_count >= number)
+            {
+                first_aid_count += 1;
+                hp_bar.first_aid_count.SetText(first_aid_count.ToString());
+                player.gold_count -= number;
+                hp_bar.gold.SetText(player.gold_count.ToString());
+                goumai.SetActive(true);
+            }
+
         }
     }
 

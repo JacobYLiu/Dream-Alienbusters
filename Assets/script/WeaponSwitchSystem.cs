@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponSwitchSystem : MonoBehaviour
 {
@@ -48,12 +49,49 @@ public class WeaponSwitchSystem : MonoBehaviour
         }
     }
 
+
+    public int i;
+
+    public Player player;
+    public int djc;
+    public GameObject goumai;
+    public void Qiang(Button btn)
+    {
+       
+        if (djc == 0)
+        {
+            if (player.gold_count >= 3)
+            {
+                i++;
+                btn.enabled = false;
+                player.gold_count -= 3;
+                canvas.gold.SetText(player.gold_count.ToString());
+                djc++;
+                goumai.SetActive(true);
+            }
+        }
+        if (djc == 1)
+        {
+            if (player.gold_count >= 5)
+            {
+                i++;
+                btn.enabled = false;
+                player.gold_count -= 5;
+                canvas.gold.SetText(player.gold_count.ToString());
+                djc++;
+                goumai.SetActive(true);
+            }
+        }
+
+    }
+
+
     private void switch_gun()
     {
         active_gun.gameObject.SetActive(false);
         canvas.gunImage[gun_index].gameObject.SetActive(false);
         gun_index++;
-        if(gun_index >= guns.Count)
+        if(gun_index >= i)
         {
             gun_index = 0;
         }
