@@ -107,7 +107,7 @@ public class GunSystem : MonoBehaviour
 
             if (Physics.Raycast(camaraHead.position, camaraHead.forward, out hit, 100f))
             {
-                if (Vector3.Distance(camaraHead.position, hit.point) > 1f)
+                if (Vector3.Distance(camaraHead.position, hit.point) > 2f)
                 {
                     firePosition.LookAt(hit.point);
 
