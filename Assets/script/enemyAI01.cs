@@ -29,7 +29,7 @@ public class enemyAI01 : MonoBehaviour
     public float attackRange, attackTime;
     private bool playerInAttackRange, readyToAttack = true;
     public GameObject projectile;
-    public float Melee_Damage;
+    public int Melee_Damage;
 
     // States
     public bool meleeAttacker;
