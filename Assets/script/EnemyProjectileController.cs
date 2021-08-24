@@ -7,7 +7,7 @@ public class EnemyProjectileController : MonoBehaviour
     Rigidbody myRigidBody;
     public float upForce, forwardForce;
     public int damageAmount = 3;
-
+    public float bulletTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,9 @@ public class EnemyProjectileController : MonoBehaviour
         myRigidBody = GetComponent<Rigidbody>();
 
         GrenadeThrow();
+
     }
+
 
     // Update is called once per frame
 
@@ -26,7 +28,12 @@ public class EnemyProjectileController : MonoBehaviour
     }
     void Update()
     {
-        
+        bulletTimer -= Time.deltaTime; // destroy bullet if it fly too long
+
+        if (bulletTimer < 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
