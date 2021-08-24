@@ -22,6 +22,10 @@ public class Explosion : MonoBehaviour
         {
             other.GetComponent<PlayerHealthSystem>().TakingDamange(explosionDamage);
         }
+        if (other.CompareTag("Boss"))
+        {
+            other.GetComponent<BossHealth>().TakingDamange(explosionDamage);
+        }
     }
 
     IEnumerator DestoryObj()
