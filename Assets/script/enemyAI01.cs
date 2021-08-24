@@ -8,6 +8,8 @@ public class enemyAI01 : MonoBehaviour
 {
     NavMeshAgent myAgent;
 
+    public Animator bossAnimator;
+
     public LayerMask whatIsGround, whatIsPlayer;
     public Transform player;
 
@@ -27,6 +29,7 @@ public class enemyAI01 : MonoBehaviour
     public float attackRange, attackTime;
     private bool playerInAttackRange, readyToAttack = true;
     public GameObject projectile;
+    public float Melee_Damage;
 
     // States
     public bool meleeAttacker;
@@ -34,6 +37,10 @@ public class enemyAI01 : MonoBehaviour
     //animator
     public Animator enemy_veribot_animation_control;
 
+    //boss
+    public bool isBoss;
+
+    int boss_attack_motion_counter = 0;
 
     void Start()
     {
@@ -63,6 +70,11 @@ public class enemyAI01 : MonoBehaviour
 
         if (distanceToDestination.magnitude < 1f)
             destinationSet = false;
+
+        if (isBoss)
+        {
+            bossAnimator.SetTrigger("Walk_Cycle_1");
+        }
     }
 
     private void SearchForDestination()
@@ -84,6 +96,10 @@ public class enemyAI01 : MonoBehaviour
     private void ChasePlayer()
     {
         myAgent.SetDestination(player.position);
+        if (isBoss)
+        {
+            bossAnimator.SetTrigger("Walk_Cycle_1");
+        }
     }   
 
 
@@ -100,9 +116,49 @@ public class enemyAI01 : MonoBehaviour
             readyToAttack = false;
             StartCoroutine(ResetAttack());
         }
+        if(readyToAttack && meleeAttacker && isBoss)
+        {
+            readyToAttack = false;
+            switch (boss_attack_motion_counter)
+            {
+                case 0:
+                    bossAnimator.SetTrigger("Attack_1");
+                    break;
+                case 1:
+                    bossAnimator.SetTrigger("Attack_2");
+                    break;
+                case 2:
+                    bossAnimator.SetTrigger("Attack_3");
+                    break;
+                case 3:
+                    bossAnimator.SetTrigger("Attack_4");
+                    break;
+                case 4:
+                    bossAnimator.SetTrigger("Attack_5");
+                    break;
+                default:
+                    boss_attack_motion_counter = 0;
+                    break;
+            }
+
+            boss_attack_motion_counter++;
+            if(boss_attack_motion_counter > 4)
+            {
+                boss_attack_motion_counter = 0;
+            }
+            StartCoroutine(ResetAttack());
+        }
 
         
 
+    }
+
+    public void MeleeDamage()
+    {
+        if (playerInAttackRange)
+        {
+            player.GetComponent<PlayerHealthSystem>().TakingDamange(Melee_Damage);
+        }
     }
 
   
