@@ -128,8 +128,8 @@ public class enemyAI01 : MonoBehaviour
 
         if (readyToAttack && !meleeAttacker)
         {
-           
-            Instantiate(projectile, transform.position, Quaternion.identity);
+            firePosition.LookAt(player);
+            Instantiate(projectile, firePosition.position, firePosition.rotation);
             readyToAttack = false;
             StartCoroutine(ResetAttack());
 
@@ -209,6 +209,8 @@ public class enemyAI01 : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, chaseRange);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, destinationRange);
     }
 
 }

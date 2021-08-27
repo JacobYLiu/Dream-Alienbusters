@@ -275,5 +275,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upForce: 8
   forwardForce: 32
-  damageAmount: 25
+  damageAmount: 10
   bulletTimer: 3
