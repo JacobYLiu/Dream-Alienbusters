@@ -73,7 +73,15 @@ public class GunSystem : MonoBehaviour
 
     }
 
+    public void in_shop()
+    {
+        readyToShoot = false;
+    }
 
+    public void exit_shop()
+    {
+        readyToShoot = true;
+    }
 
     private void update_ammo_count()
     {

@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
     private AudioSource _audioSource;
     private Vector3 moving;
 
+    public WeaponSwitchSystem guns;
     
     // Start is called before the first frame update
     void Start()
@@ -237,8 +238,7 @@ public class Player : MonoBehaviour
             xs.SetActive(true);
         }
         if (col.gameObject.tag == "shop")
-        {
-
+        {   
             xs.SetActive(true);
 
         }
@@ -269,9 +269,11 @@ public class Player : MonoBehaviour
             {
                 Cursor.visible = true;
                 Cursor.lockState = true ? CursorLockMode.Confined : CursorLockMode.Locked;
+                
                 shop1.SetActive(true);
                 xs.SetActive(false);
                 isjingtai = true;
+                guns.deactive_gun();
                 HandgunScriptLPFP.isdong=true;
             }
         }
@@ -284,6 +286,7 @@ public class Player : MonoBehaviour
                 shop2.SetActive(true);
                 xs.SetActive(false);
                 isjingtai = true;
+                guns.deactive_gun();
                 HandgunScriptLPFP.isdong = true;
             }
         }
@@ -294,6 +297,7 @@ public class Player : MonoBehaviour
     {
         isjingtai = false;
         HandgunScriptLPFP.isdong = false;
+        guns.reactive_gun();
     }
 
 
@@ -319,6 +323,7 @@ public class Player : MonoBehaviour
             Cursor.lockState = false ? CursorLockMode.Confined : CursorLockMode.Locked;
             shop1.SetActive(false);
             xs.SetActive(false);
+            Time.timeScale = 1f;
         }
         if (col.gameObject.tag == "shop1")
         {
@@ -326,6 +331,7 @@ public class Player : MonoBehaviour
             Cursor.lockState = false ? CursorLockMode.Confined : CursorLockMode.Locked;
             shop2.SetActive(false);
             xs.SetActive(false);
+            Time.timeScale = 1f;
         }
     }
 
