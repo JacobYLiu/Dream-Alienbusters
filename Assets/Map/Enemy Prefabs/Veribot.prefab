@@ -1281,8 +1281,8 @@ MonoBehaviour:
   health: 100
   destinationPoint: {x: 0, y: 0, z: 0}
   destinationRange: 10
-  chaseRange: 16
-  attackRange: 12
+  chaseRange: 14
+  attackRange: 14
   attackTime: 1
   projectile: {fileID: 5543777375236355731, guid: 44ffb91203bfb454ba2cf7a5e1a4d148,
     type: 3}
