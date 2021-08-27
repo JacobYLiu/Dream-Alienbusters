@@ -57,34 +57,48 @@ public class WeaponSwitchSystem : MonoBehaviour
     public GameObject goumai;
     public void Qiang(Button btn)
     {
-       
-        if (djc == 0)
+        
+        switch (djc)
         {
-            if (player.gold_count >= 3)
-            {
-                i++;
-                btn.enabled = false;
-                player.gold_count -= 3;
-                canvas.gold.SetText(player.gold_count.ToString());
-                djc++;
-                goumai.SetActive(true);
-            }
-        }
-        if (djc == 1)
-        {
-            if (player.gold_count >= 5)
-            {
-                i++;
-                btn.enabled = false;
-                player.gold_count -= 5;
-                canvas.gold.SetText(player.gold_count.ToString());
-                djc++;
-                goumai.SetActive(true);
-            }
+            case 0:
+                if (player.gold_count >= 3)
+                {
+                    i++;
+                    btn.enabled = false;
+                    player.gold_count -= 3;
+                    canvas.gold.SetText(player.gold_count.ToString());
+                    djc++;
+                    goumai.SetActive(true);
+                }
+                break;
+            case 1:
+                if (djc == 1)
+                {
+                    if (player.gold_count >= 5)
+                    {
+                        i++;
+                        btn.enabled = false;
+                        player.gold_count -= 5;
+                        canvas.gold.SetText(player.gold_count.ToString());
+                        djc++;
+                        goumai.SetActive(true);
+                    }
+                }
+                break;
+            default:
+                break;
         }
 
     }
 
+    public void deactive_gun() {
+        active_gun.gameObject.SetActive(false);
+    }
+
+    public void reactive_gun()
+    {
+        active_gun.gameObject.SetActive(true);
+    }
 
     private void switch_gun()
     {
