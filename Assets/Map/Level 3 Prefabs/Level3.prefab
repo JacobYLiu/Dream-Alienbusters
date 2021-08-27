@@ -26955,25 +26955,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2455955192346842755}
     m_Modifications:
-    - target: {fileID: 2167560820254631668, guid: d9e93000ca9be8147bcbcaa1bb15c54f,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2167560820254631668, guid: d9e93000ca9be8147bcbcaa1bb15c54f,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8687233535075124882, guid: d9e93000ca9be8147bcbcaa1bb15c54f,
         type: 3}
       propertyPath: m_Name
       value: crab-monster
-      objectReference: {fileID: 0}
-    - target: {fileID: 8687233535075124969, guid: d9e93000ca9be8147bcbcaa1bb15c54f,
-        type: 3}
-      propertyPath: destinationRange
-      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8687233535075162866, guid: d9e93000ca9be8147bcbcaa1bb15c54f,
         type: 3}
@@ -26993,7 +26978,7 @@ PrefabInstance:
     - target: {fileID: 8687233535075162866, guid: d9e93000ca9be8147bcbcaa1bb15c54f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 252.2
+      value: 251.224
       objectReference: {fileID: 0}
     - target: {fileID: 8687233535075162866, guid: d9e93000ca9be8147bcbcaa1bb15c54f,
         type: 3}
